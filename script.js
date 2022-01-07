@@ -48,6 +48,7 @@ f_button.innerHTML = "F"
 
 const addButton = document.createElement('div')
 addButton.classList.add("button", "is-black")
+addButton.innerHTML = "ADD"
 
 //write the function to add the buttons to your HTML on page load
 //** NOTE: setTimeout is just to slow the load so you can see it. but you could use it to add a CSS loaders and other neat stuff!! :)
@@ -127,5 +128,22 @@ f_button.addEventListener('click', (event) => {
 
 //add a function to take your word from the word div and add it to an Array to then add to your Words Bank
 
+let wordsBankArray = []
+let wordCount = 0
 
+foundTitle.innerHTML = `You have found ${wordCount} words!`
+wordsBankDIV.appendChild(foundTitle)
 
+addButton.addEventListener('click', (e) => {
+    e.preventDefault()
+    wordsBankArray.push(wordDIV.innerHTML)
+    
+    let newWordDIV = document.createElement('div')
+    newWordDIV.setAttribute('id', `${wordCount}`)
+    newWordDIV.classList.add("is-size-2")
+    newWordDIV.innerHTML = wordsBankArray[wordCount]
+    wordsBankDIV.appendChild(newWordDIV)
+    wordCount++
+    foundTitle.innerHTML = `You have found ${wordCount} words!`
+    wordDIV.innerHTML = ""
+})
